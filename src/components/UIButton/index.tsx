@@ -20,7 +20,7 @@ focus:ring-offset-2`,
             color: {
                 primary: 'border-transparent bg-primary-800 text-white hover:bg-primary-600',
                 secondary: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-200',
-                delete: 'border-transparent bg-red-700 text-white hover:bg-red-500'
+                danger: 'border-transparent bg-red-700 text-white hover:bg-red-500'
             },
             text: {
                 normal: 'text-sm',
