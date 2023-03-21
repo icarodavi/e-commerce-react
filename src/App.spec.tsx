@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
 jest.mock('@tanstack/react-query', () => {
@@ -11,7 +11,7 @@ jest.mock('@tanstack/react-query', () => {
 
 describe('Main page', () => {
     it('renders correctly', () => {
-        const { getByText } = render(<App />);
-        expect(getByText('Women')).toBeInTheDocument();
+        render(<App />);
+        expect(screen.getByText('Women')).toBeInTheDocument();
     })
 });
