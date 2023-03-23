@@ -35,7 +35,7 @@ export function Cart() {
         <UIButton 
         className='flex flex-row justify-center items-center gap-1'
         onClick={contextClearCart}
-        ><HiOutlineTrash />Clear Cart</UIButton>
+        ><HiOutlineTrash className="h-5 w-5"/>Clear Cart</UIButton>
         </div>
 
         <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
