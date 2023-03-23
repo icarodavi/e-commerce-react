@@ -1,7 +1,8 @@
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
-import { classNames } from "../../../utils/string";
+import { useNavigate  } from "react-router-dom";
+
 
 export function MainHeader({
     // currencies,
@@ -13,6 +14,7 @@ export function MainHeader({
     setMobileMenuOpen: any
 }) {
     const [showSearchInput, setShowSearchInput] = useState(false);
+    const navigate = useNavigate();
     return (<>
         <header className="relative">
             <nav aria-label="Top">
@@ -57,6 +59,15 @@ export function MainHeader({
                                     <div className="flex h-full justify-center space-x-8">
                                         <div className="py-2">
                                             <Menu as="div" className="relative inline-block text-left">
+                                            <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                                                    <button
+                                                    onClick={() => {navigate('/', {
+                                                        replace: true,
+                                                    })}}
+                                                    className="bg-white">Home</button>
+                                                    </Menu.Button>
+                                            </Menu>
+                                            <Menu as="div" className="relative inline-block text-left">
                                                 <Menu.Button 
                                                 className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                                     Categories
@@ -76,15 +87,16 @@ export function MainHeader({
                                                 >
                                                     <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                                         <div className="px-1 py-1 z-50">
+                                                                
                                                             {(navigation && navigation.length > 0) && navigation.map((page: any) => (
                                                                 <Menu.Item key={page.key} as={Fragment}>
-                                                                    <button
+                                                                    <a
                                                                         key={page.key}
-                                                                        // href={`/categories/${page.key}`}
-                                                                        className="group flex w-full items-center rounded-md px-2 py-2 text-sm z-50 bg-white"
+                                                                        href={`/category/${page.key}`}
+                                                                        className="group flex w-full items-center rounded-md px-2 py-2 text-sm z-50 bg-white hover:text-purple-900"
                                                                     >
                                                                         {page.title}
-                                                                    </button>
+                                                                    </a>
                                                                 </Menu.Item>
                                                             ))}
                                                         </div>

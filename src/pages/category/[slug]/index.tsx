@@ -1,12 +1,14 @@
-import { MainPageFilters } from '../../layouts/MainLayout/components/MainPageFilters';
-import { ProductGrid } from '../../layouts/MainLayout/components/ProductGrid';
-import { FeaturedBanner } from '../../layouts/MainLayout/components/FeaturedBanner';
-import { MoreProductsGrid } from '../../layouts/MainLayout/components/MoreProductsGrid';
-import { useProducts } from '../../hooks/useProducts';
-import { useAllCategories } from '../../hooks/useAllCategories';
-import { MainLayout } from '../../layouts/MainLayout';
+import { MainPageFilters } from '../../../layouts/MainLayout/components/MainPageFilters';
+import { ProductGrid } from '../../../layouts/MainLayout/components/ProductGrid';
+import { FeaturedBanner } from '../../../layouts/MainLayout/components/FeaturedBanner';
+import { MoreProductsGrid } from '../../../layouts/MainLayout/components/MoreProductsGrid';
+import { useProducts } from '../../../hooks/useProducts';
+import { useAllCategories } from '../../../hooks/useAllCategories';
+import { MainLayout } from '../../../layouts/MainLayout';
 import { useContextSelector } from 'use-context-selector';
-import { LayoutContext } from '../../context/LayoutContext';
+import { LayoutContext } from '../../../context/LayoutContext';
+import { useParams } from 'react-router-dom';
+import { useProductsByCategory } from '../../../hooks/useProducts';
 
 
 const products2 = [
@@ -121,33 +123,30 @@ const modifiedFilters = (dataFilters: any, newCategories: any) => {
 }
 
 
-export function Home() {
-    const { data, status } = useProducts();
-    const {
-        categoriesData,
-        setMobileFiltersOpen,
-        categoriesStatus
-    } = useContextSelector(LayoutContext, (context => {
-        return context;
-    }))
+export function ProductsByCategory() {
+    const { slug } = useParams();
+
+    const { data, status } = useProductsByCategory(String(slug));
+
     return (<>
         <MainLayout>
             {/* Filters */}
-            <div className="pb-2">
+            {/* <div className="pb-2">
                 {(Boolean(categoriesStatus === 'success') && categoriesData) && (<MainPageFilters
                     filters={modifiedFilters(filters, categoriesData)}
                     setMobileFiltersOpen={setMobileFiltersOpen}
                     sortOptions={sortOptions}
                 />)
                 }
-            </div >
+            </div > */}
 
             {/* Product grid */}
-            <ProductGrid
-                data={data}
-                status={status}
-            />
-
+            <div className="mt-2">
+                <ProductGrid
+                    data={data}
+                    status={status}
+                />
+            </div>
             <FeaturedBanner />
 
             <MoreProductsGrid

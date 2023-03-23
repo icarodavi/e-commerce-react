@@ -53,58 +53,16 @@ export function MobileMenu({
                                 </button>
                             </div>
 
-                            {/* Links */}
-                            {/* <Tab.Group as="div" className="mt-2">
-                                <div className="border-b border-gray-200">
-                                    <Tab.List className="-mb-px flex space-x-8 px-4">
-                                        {navigation.categories.map((category: any) => (
-                                            <Tab
-                                                key={category.name}
-                                                className={({ selected }) =>
-                                                    classNames(
-                                                        selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900',
-                                                        'flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium'
-                                                    )
-                                                }
-                                            >
-                                                {category.name}
-                                            </Tab>
-                                        ))}
-                                    </Tab.List>
-                                </div>
-                                <Tab.Panels as={Fragment}>
-                                    {navigation.categories.map((category: any) => (
-                                        <Tab.Panel key={category.name} className="space-y-12 px-4 py-6">
-                                            <div className="grid grid-cols-2 gap-x-4 gap-y-10">
-                                                {category.featured.map((item: any) => (
-                                                    <div key={item.name} className="group relative">
-                                                        <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75">
-                                                            <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
-                                                        </div>
-                                                        <a href={item.href} className="mt-6 block text-sm font-medium text-gray-900">
-                                                            <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                                            {item.name}
-                                                        </a>
-                                                        <p aria-hidden="true" className="mt-1 text-sm text-gray-500">
-                                                            Shop now
-                                                        </p>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </Tab.Panel>
-                                    ))}
-                                </Tab.Panels>
-                            </Tab.Group> */}
-
                             <div className="space-y-6 py-6 px-4">
                                     <div className="flow-root">
                                         <h3 className="font-semibold antialiased text-gray-500">Categories</h3>
                                     </div>
                             </div>
                             <div className="space-y-6 border-t border-gray-200 py-6 px-4">
+                                <a href="/" className="-m-2 block p-2 font-semibold text-gray-900">Home</a>
                                 {(navigation && navigation.length > 0) && navigation.map((page: any) => (
                                     <div key={page.key} className="flow-root">
-                                        <a href={page.key} className="-m-2 block p-2 font-medium text-gray-900">
+                                        <a href={`/category/${page.key}`} className="-m-2 block p-2 font-medium text-gray-900">
                                             {page.title}
                                         </a>
                                     </div>
