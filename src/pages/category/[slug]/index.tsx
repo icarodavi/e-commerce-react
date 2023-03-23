@@ -6,7 +6,7 @@ import { useProducts } from '../../../hooks/useProducts';
 import { useAllCategories } from '../../../hooks/useAllCategories';
 import { MainLayout } from '../../../layouts/MainLayout';
 import { useContextSelector } from 'use-context-selector';
-import { LayoutContext } from '../../../context/LayoutContext';
+import { LayoutContext } from '../../../context/ShopContext';
 import { useParams } from 'react-router-dom';
 import { useProductsByCategory } from '../../../hooks/useProducts';
 

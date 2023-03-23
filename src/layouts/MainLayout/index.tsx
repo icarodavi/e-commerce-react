@@ -2,7 +2,7 @@ import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, ReactNode, useState } from "react";
 import { useContextSelector } from "use-context-selector";
-import { LayoutContext } from "../../context/LayoutContext";
+import { LayoutContext } from "../../context/ShopContext";
 import { classNames } from "../../utils/string";
 import { MainFooter } from "./components/MainFooter";
 import { MainHeader } from "./components/MainHeader";
