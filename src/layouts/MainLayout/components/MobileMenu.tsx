@@ -5,12 +5,12 @@ import { classNames } from "../../../utils/string";
 
 export function MobileMenu({
     navigation,
-    currencies,
+    // currencies,
     mobileMenuOpen,
     setMobileMenuOpen
 }: {
     navigation: any,
-    currencies: any,
+    // currencies: any,
     mobileMenuOpen: any,
     setMobileMenuOpen: any
 }) {
@@ -54,7 +54,7 @@ export function MobileMenu({
                             </div>
 
                             {/* Links */}
-                            <Tab.Group as="div" className="mt-2">
+                            {/* <Tab.Group as="div" className="mt-2">
                                 <div className="border-b border-gray-200">
                                     <Tab.List className="-mb-px flex space-x-8 px-4">
                                         {navigation.categories.map((category: any) => (
@@ -94,13 +94,18 @@ export function MobileMenu({
                                         </Tab.Panel>
                                     ))}
                                 </Tab.Panels>
-                            </Tab.Group>
+                            </Tab.Group> */}
 
+                            <div className="space-y-6 py-6 px-4">
+                                    <div className="flow-root">
+                                        <h3 className="font-semibold antialiased text-gray-500">Categories</h3>
+                                    </div>
+                            </div>
                             <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                                {navigation.pages.map((page: any) => (
-                                    <div key={page.name} className="flow-root">
-                                        <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
-                                            {page.name}
+                                {(navigation && navigation.length > 0) && navigation.map((page: any) => (
+                                    <div key={page.key} className="flow-root">
+                                        <a href={page.key} className="-m-2 block p-2 font-medium text-gray-900">
+                                            {page.title}
                                         </a>
                                     </div>
                                 ))}
@@ -119,10 +124,10 @@ export function MobileMenu({
                                 </div>
                             </div>
 
-                            <div className="space-y-6 border-t border-gray-200 py-6 px-4">
+                            <div className="space-y-6  py-6 px-4">
                                 {/* Currency selector */}
                                 <form>
-                                    <div className="inline-block">
+                                    {/* <div className="inline-block">
                                         <label htmlFor="mobile-currency" className="sr-only">
                                             Currency
                                         </label>
@@ -140,7 +145,7 @@ export function MobileMenu({
                                                 <ChevronDownIcon className="h-5 w-5 text-gray-500" aria-hidden="true" />
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </form>
                             </div>
                         </Dialog.Panel>

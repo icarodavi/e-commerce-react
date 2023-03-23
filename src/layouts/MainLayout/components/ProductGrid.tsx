@@ -3,7 +3,7 @@ import { priceFormatter } from "../../../utils/format";
 export function ProductGrid({ data, status }: {data: any, status: any}) {
     return(
         <>
-    <section aria-labelledby="products-heading" className="mt-8">
+    <section aria-labelledby="products-heading" className="mt- z-10">
                             <h2 id="products-heading" className="sr-only">
                                 Products
                             </h2>

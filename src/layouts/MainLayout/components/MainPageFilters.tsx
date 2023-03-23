@@ -71,12 +71,12 @@ export function MainPageFilters({
                                 </button>
 
                                 <Popover.Group className="hidden sm:flex sm:items-baseline sm:space-x-8">
-                                    {filters.map((section: any, sectionIdx: any) => (
+                                    {filters && filters.map((section: any, sectionIdx: any) => (
                                         <Popover as="div" key={section.name} id="menu" className="relative inline-block text-left">
                                             <div>
                                                 <Popover.Button className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                                                     <span>{section.name}</span>
-                                                    {sectionIdx === 0 ? (
+                                                    {sectionIdx === -1 ? (
                                                         <span className="ml-1.5 rounded bg-gray-200 py-0.5 px-1.5 text-xs font-semibold tabular-nums text-gray-700">
                                                             1
                                                         </span>
