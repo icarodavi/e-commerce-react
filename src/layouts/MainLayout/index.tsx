@@ -2,7 +2,7 @@ import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment, ReactNode, useState } from "react";
 import { useContextSelector } from "use-context-selector";
-import { LayoutContext } from "../../context/ShopContext";
+import { ShopContext } from "../../context/ShopContext";
 import { classNames } from "../../utils/string";
 import { MainFooter } from "./components/MainFooter";
 import { MainHeader } from "./components/MainHeader";
@@ -58,7 +58,7 @@ const filters = [
         ],
     },
 ]
-
+// 
 const footerNavigation = {
     products: [
         { name: 'Bags', href: '#' },
@@ -94,7 +94,7 @@ export function MainLayout({children}:{children: ReactNode}) {
         setMobileMenuOpen,
         mobileFiltersOpen,
         setMobileFiltersOpen,
-    } = useContextSelector(LayoutContext, (context => {
+    } = useContextSelector(ShopContext, (context => {
         return context;
     }))
 

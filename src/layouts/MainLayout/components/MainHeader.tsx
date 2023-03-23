@@ -2,6 +2,7 @@ import { Menu, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useNavigate  } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export function MainHeader({
@@ -61,9 +62,10 @@ export function MainHeader({
                                             <Menu as="div" className="relative inline-block text-left">
                                             <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                                     <button
-                                                    onClick={() => {navigate('/', {
-                                                        replace: true,
-                                                    })}}
+                                                    onClick={() => {
+                                                        navigate('/', { replace: true, })
+                                                        // toast.success('Sucesso!');
+                                                    }}
                                                     className="bg-white">Home</button>
                                                     </Menu.Button>
                                             </Menu>

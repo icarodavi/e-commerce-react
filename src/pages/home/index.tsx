@@ -6,7 +6,7 @@ import { useProducts } from '../../hooks/useProducts';
 import { useAllCategories } from '../../hooks/useAllCategories';
 import { MainLayout } from '../../layouts/MainLayout';
 import { useContextSelector } from 'use-context-selector';
-import { LayoutContext } from '../../context/ShopContext';
+import { ShopContext } from '../../context/ShopContext';
 
 
 const products2 = [
@@ -127,7 +127,7 @@ export function Home() {
         categoriesData,
         setMobileFiltersOpen,
         categoriesStatus
-    } = useContextSelector(LayoutContext, (context => {
+    } = useContextSelector(ShopContext, (context => {
         return context;
     }))
     return (<>

@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useReducer, useState } from 'react';
 import { createContext } from 'use-context-selector';
 import { useAllCategories } from '../hooks/useAllCategories';
-import { JSONStorage, ShopActionsType } from '../reducers/shop/actions';
+import { addItemToCart, clearCart, decreaseItemToCart, increaseItemToCart, JSONStorage, removeItemToCart } from '../reducers/shop/actions';
 import { itemCart, shopReducer } from '../reducers/shop/reducer';
 
 interface ShopContextType {
@@ -12,6 +12,11 @@ interface ShopContextType {
     categoriesData: any,
     categoriesStatus: any
     cart?: itemCart[],
+    contextAddItemToCart: (newItem: itemCart) => void,
+    contextRemoveItemToCart: (id: number) => void, 
+    contextClearCart: () => void,
+    contextIncreaseItemToCart: (id: number) => void,
+    contextDecreaseItemToCart: (id: number) => void,
 }
 
 export const ShopContext = createContext({} as ShopContextType);
@@ -22,18 +27,24 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     const queryCategories = useAllCategories();
     const { status: categoriesStatus, data: categoriesData } = queryCategories;
 
-
-    const [shopState, dispatch] = useReducer(shopReducer,{
-        cart: [],
-        mobileFiltersOpen: mobileFiltersOpen,
-        mobileMenuOpen: mobileMenuOpen,
-    }, () => {
+const INITIAL_STATE = {
+    cart: [],
+}
+    const [shopState, dispatch] = useReducer(
+        shopReducer, 
+        INITIAL_STATE, 
+        () => {
         const storedStateAsJSON = localStorage.getItem(JSONStorage.key);
 
         if (storedStateAsJSON) {
-            return JSON.parse(storedStateAsJSON);
+            console.log(storedStateAsJSON);
+            // return JSON.parse(storedStateAsJSON);
+            return {
+                ...JSON.parse(storedStateAsJSON)
+            };
         }
-    },);
+    },
+    );
 
     useEffect(() => {
         const stateJSON = JSON.stringify(shopState);
@@ -41,13 +52,39 @@ export function ShopProvider({ children }: { children: ReactNode }) {
         localStorage.setItem(JSONStorage.key, stateJSON);
     },[shopState])
 
+
+    function contextRemoveItemToCart(id:number) {
+        dispatch(removeItemToCart(id));
+    }
+
+    function contextAddItemToCart(newItem: itemCart) {
+        dispatch(addItemToCart(newItem));
+    }
+
+    function contextClearCart() {
+        dispatch(clearCart());
+    }
+
+    function contextIncreaseItemToCart(id:number) {
+        dispatch(increaseItemToCart(id));
+    }
+
+    function contextDecreaseItemToCart(id: number) {
+        dispatch(decreaseItemToCart(id));
+    }
+
     return (
         <ShopContext.Provider
             value={{
                 mobileFiltersOpen, setMobileFiltersOpen,
                 mobileMenuOpen, setMobileMenuOpen,
                 categoriesData,
-                categoriesStatus
+                categoriesStatus,
+                contextAddItemToCart,
+                contextRemoveItemToCart,
+                contextClearCart,
+                contextIncreaseItemToCart,
+                contextDecreaseItemToCart,
             }}>
             {children}
         </ShopContext.Provider>
