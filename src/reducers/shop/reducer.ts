@@ -5,7 +5,7 @@ export interface itemCart {
     id: number,
     name?: string,
     href?: string,
-    price?: number,
+    price: number,
     inStock?: boolean,
     imageSrc?: string,
     quantity: number;
@@ -25,9 +25,15 @@ export function shopReducer(state: ShopState, action: any) {
     switch (action.type) {
 
         case ShopActionsType.ADD_ITEM_TO_CART: {
+            const foundId = state.cart.findIndex(item => item.id === action.payload.newItem.id)
+            if (foundId === -1) {
+                return produce(state, (draft) => {
+                    draft.cart.push(action.payload.newItem);
+                });
+            }
             return produce(state, (draft) => {
-                draft.cart.push(action.payload.newItem);
-            });
+                draft.cart[foundId].quantity += 1;
+            })
         }
 
         case ShopActionsType.CLEAR_CART: {

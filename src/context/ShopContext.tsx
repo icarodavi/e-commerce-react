@@ -11,7 +11,7 @@ interface ShopContextType {
     setMobileMenuOpen: (value: boolean) => void,
     categoriesData: any,
     categoriesStatus: any
-    cart?: itemCart[],
+    cart: itemCart[],
     contextAddItemToCart: (newItem: itemCart) => void,
     contextRemoveItemToCart: (id: number) => void, 
     contextClearCart: () => void,
@@ -73,11 +73,15 @@ const INITIAL_STATE = {
         dispatch(decreaseItemToCart(id));
     }
 
+    const { cart} = shopState;
     return (
         <ShopContext.Provider
             value={{
-                mobileFiltersOpen, setMobileFiltersOpen,
-                mobileMenuOpen, setMobileMenuOpen,
+                cart,
+                mobileFiltersOpen, 
+                setMobileFiltersOpen,
+                mobileMenuOpen, 
+                setMobileMenuOpen,
                 categoriesData,
                 categoriesStatus,
                 contextAddItemToCart,

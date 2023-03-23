@@ -3,6 +3,8 @@ import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon
 import { Fragment, useState } from "react";
 import { useNavigate  } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContextSelector } from "use-context-selector";
+import { ShopContext } from "../../../context/ShopContext";
 
 
 export function MainHeader({
@@ -16,6 +18,7 @@ export function MainHeader({
 }) {
     const [showSearchInput, setShowSearchInput] = useState(false);
     const navigate = useNavigate();
+    const { cart } = useContextSelector(ShopContext, (context) => {console.log(context); return context});
     return (<>
         <header className="relative">
             <nav aria-label="Top">
@@ -109,7 +112,7 @@ export function MainHeader({
                                                 <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                                     <button className="bg-white">My Account</button></Menu.Button>
                                                 <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                                                    <button onClick={() => { alert('s') }} className="bg-white">Orders</button></Menu.Button>
+                                                    <button onClick={() => { console.log('Orders'); }} className="bg-white">Orders</button></Menu.Button>
                                             </Menu>
                                         </div>
                                     </div>
@@ -188,12 +191,12 @@ export function MainHeader({
 
                                     {/* Cart */}
                                     <div className="ml-4 flow-root lg:ml-8">
-                                        <a href="#" className="group -m-2 flex items-center p-2">
+                                        <a href="/cart" className="group -m-2 flex items-center p-2">
                                             <ShoppingBagIcon
                                                 className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                                 aria-hidden="true"
                                             />
-                                            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                                            <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cart && cart.length}</span>
                                             <span className="sr-only">items in cart, view bag</span>
                                         </a>
                                     </div>
