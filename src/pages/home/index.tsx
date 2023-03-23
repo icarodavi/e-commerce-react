@@ -134,12 +134,12 @@ export function Home() {
         <MainLayout>
             {/* Filters */}
             <div className="pb-2">
-                {(Boolean(categoriesStatus === 'success') && categoriesData) && (<MainPageFilters
+                {/*(Boolean(categoriesStatus === 'success') && categoriesData) && (<MainPageFilters
                     filters={modifiedFilters(filters, categoriesData)}
                     setMobileFiltersOpen={setMobileFiltersOpen}
                     sortOptions={sortOptions}
                 />)
-                }
+            */}
             </div >
 
             {/* Product grid */}
@@ -148,11 +148,12 @@ export function Home() {
                 status={status}
             />
 
-            <FeaturedBanner />
-
-            <MoreProductsGrid
+            <div className="mb-8">
+                <FeaturedBanner />
+            </div>
+            {/* <MoreProductsGrid
                 products2={products2}
-            />
+            /> */}
         </MainLayout>
     </>);
 }

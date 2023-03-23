@@ -37,12 +37,14 @@ const INITIAL_STATE = {
         const storedStateAsJSON = localStorage.getItem(JSONStorage.key);
 
         if (storedStateAsJSON) {
-            console.log(storedStateAsJSON);
             // return JSON.parse(storedStateAsJSON);
             return {
                 ...JSON.parse(storedStateAsJSON)
             };
         }
+        return {
+            cart: [],
+        };
     },
     );
 
@@ -73,7 +75,7 @@ const INITIAL_STATE = {
         dispatch(decreaseItemToCart(id));
     }
 
-    const { cart} = shopState;
+    const { cart } = shopState;
     return (
         <ShopContext.Provider
             value={{

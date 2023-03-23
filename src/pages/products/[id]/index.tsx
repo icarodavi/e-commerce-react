@@ -133,7 +133,7 @@ export default function ProductById() {
                     onClick={(event: any) => {
                         event.preventDefault();
                         contextAddItemToCart(itemToCart(data));
-                        toast.success(`${data.title} foi adicionado ao carrinho`);
+                        toast.success(`${data.title} was added to the cart`);
 
                     }}
                   >
