@@ -36,7 +36,7 @@ To learn more about the technologies used in this site template, see the followi
 - [ViteJs](https://vitejs.dev/guide) - the official ViteJS documentation
 
 
-# Requisits of project
+# Requirements of project
 
 - [x] User should be able to see all Product Categories;
 - [x] User should be able to enter into a Category to see category details;
@@ -48,7 +48,7 @@ To learn more about the technologies used in this site template, see the followi
 - [x] User should be able to remove a product from the cart;
 - [x] User should be able to cancel the order, cleaning up the cart;
 - [x] User should be able to confirm his order, seeing a success screen;
-- [ ] User should be able to search by product name, to easily find a product to buy;
+- [x] User should be able to search by product name, to easily find a product to buy;
 - [x] The system should calculate the total amount of the cart;
 - [x] The system should persist the state of the cart even closing/opening the app;
 - [x] The system should do a pre-load of the data, so the user can navigate among screens without seeing reloading every time;
