@@ -7,6 +7,7 @@ import { Checkout } from "../pages/checkout";
 import { Payed } from "../pages/checkout/payed";
 import { Home } from "../pages/home";
 import { ProductById } from "../pages/products/[id]";
+import { SearchProducts } from "../pages/search";
 
 function AppRoutes() {
     return (<>
@@ -46,6 +47,12 @@ function AppRoutes() {
                     path="/payed"
                     element={
                         <Payed />
+                    }
+                />
+                <Route
+                    path="/search/:query"
+                    element={
+                        <SearchProducts />
                     }
                 />
             </Routes>

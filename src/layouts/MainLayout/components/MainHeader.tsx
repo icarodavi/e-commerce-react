@@ -18,7 +18,7 @@ export function MainHeader({
 }) {
     const [showSearchInput, setShowSearchInput] = useState(false);
     const navigate = useNavigate();
-    const { cart } = useContextSelector(ShopContext, (context) => {console.log(context); return context});
+    const { cart } = useContextSelector(ShopContext, (context) => context);
     return (<>
         <header className="relative">
             <nav aria-label="Top">

@@ -31,3 +31,13 @@ export function useProductsById(id: string) {
     })
 }
 
+export function useFindProducts(query: string) {
+    return useQuery({
+        queryKey: ["useFindProducts"],
+        queryFn: async () => {
+            const { data } = await api.get(`products/search?q=${query}`);
+            return data;
+        }
+    })
+}
+
