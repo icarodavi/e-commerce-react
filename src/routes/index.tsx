@@ -3,9 +3,10 @@ import {
 } from "react-router-dom";
 import { Cart } from "../pages/cart";
 import { ProductsByCategory } from "../pages/category/[slug]";
-import Checkout from "../pages/checkout";
+import { Checkout } from "../pages/checkout";
+import { Payed } from "../pages/checkout/payed";
 import { Home } from "../pages/home";
-import ProductById from "../pages/products/[id]";
+import { ProductById } from "../pages/products/[id]";
 
 function AppRoutes() {
     return (<>
@@ -39,6 +40,12 @@ function AppRoutes() {
                     path="/checkout"
                     element={
                         <Checkout />
+                    }
+                />
+                <Route
+                    path="/payed"
+                    element={
+                        <Payed />
                     }
                 />
             </Routes>

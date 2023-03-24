@@ -33,7 +33,7 @@ const itemToCart = (data: any) => {
     return newItemToCart;
 }
 
-export default function ProductById() {
+export function ProductById() {
   const { id } = useParams();
   const { data  } = useProductsById(String(id));
   const { contextAddItemToCart } = useContextSelector(ShopContext, context => context);

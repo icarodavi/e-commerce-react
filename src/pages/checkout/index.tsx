@@ -1,19 +1,40 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContextSelector } from "use-context-selector"
 import { UIButton } from "../../components/UIButton";
+import { UISPinner } from "../../components/UISpinner";
 import { ShopContext } from "../../context/ShopContext"
 import { MainLayout } from "../../layouts/MainLayout";
 import { priceFormatter } from "../../utils/format";
 import { sumItem } from "../../utils/number";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
-export default function Checkout() {
+
+export function Checkout() {
     const { cart } = useContextSelector(ShopContext, context => context);
     const navigate = useNavigate();
+
+    const [payment, setPayment] = useState<boolean | string>(false);
+
+    const fakePayment = () => {        
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(true);
+            }, 3000)
+        })
+    }
+    
+
+    const handlePayNow = async () => {
+        setPayment(true);
+        await fakePayment();
+        navigate('/payed');
+    }
     return (
         <MainLayout>
             <div className="bg-white">
                 {/* Background color split screen for large screens */}
-                
+
 
                 <main className="relative mx-auto grid max-w-7xl grid-cols-1 gap-x-16 lg:grid-cols-2 lg:px-8">
                     <h1 className="sr-only">Checkout</h1>
@@ -69,6 +90,8 @@ export default function Checkout() {
                         </div>
                     </section>
 
+                    {!payment 
+                    && (
                     <section
                         aria-labelledby="payment-and-shipping-heading"
                         className="py-16 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-lg lg:pt-0 lg:pb-24"
@@ -223,9 +246,10 @@ export default function Checkout() {
 
 
                                 <div className="mt-10 flex justify-end border-t border-gray-200 pt-6 gap-1">
-                                    <UIButton color="secondary" onClick={(e: any)=> {e.preventDefault(); navigate('/cart')}}>Cancel</UIButton>
+                                    <UIButton color="secondary" onClick={(e: any) => { e.preventDefault(); navigate('/cart') }}>Cancel</UIButton>
                                     <button
                                         type="submit"
+                                        onClick={(e)=>{e.preventDefault(); handlePayNow(); }}
                                         className="rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                                     >
                                         Pay now
@@ -233,7 +257,8 @@ export default function Checkout() {
                                 </div>
                             </div>
                         </form>
-                    </section>
+                    </section>)}
+                    {payment && (<div className="flex flex-col justify-center items-center"><UISPinner size="medium" /></div>)}
                 </main>
             </div>
         </MainLayout>
