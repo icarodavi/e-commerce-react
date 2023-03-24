@@ -8,13 +8,8 @@ import { useContextSelector } from 'use-context-selector';
 import { ShopContext } from '../../context/ShopContext';
 import { priceFormatter } from '../../utils/format';
 import { itemCart } from '../../reducers/shop/reducer';
-
-const sumItem = (data: itemCart[]) => {
-    const sum =  data.reduce((previousValues, currentValue) => {
-        return previousValues + (Number(currentValue.price) * Number(currentValue.quantity))
-    }, 0);
-    return sum;
-}
+import { sumItem } from '../../utils/number';
+import { useNavigate } from 'react-router-dom';
 
 export function Cart() {
   const { 
@@ -25,6 +20,7 @@ export function Cart() {
     contextRemoveItemToCart
 } = useContextSelector(ShopContext, context => context);
 
+const navigate = useNavigate();
   return (
     <MainLayout>
 
@@ -79,7 +75,7 @@ export function Cart() {
                         <div className='flex flex-row justify-center items-center gap-1'>
                         <button
                         onClick={(e) => { e.preventDefault(); contextDecreaseItemToCart(product.id)}}
-                        className="p-2 border-0 hover:text-indigo-600"
+                        className="p-2 bg-white border-0 hover:text-indigo-600"
                         ><IoIosRemoveCircleOutline className="h-6 w-6" /></button>
                         <input
                           id={`quantity-${productIdx}`}
@@ -91,14 +87,14 @@ export function Cart() {
                         />
                         <button 
                         onClick={(e) => { e.preventDefault(); contextIncreaseItemToCart(product.id)}}
-                        className="p-2 border-0 hover:text-indigo-600"
+                        className="p-2 border-0 bg-white  hover:text-indigo-600"
                         ><IoIosAddCircleOutline className='h-6 w-6'/></button>
                         </div>     
                         <div className="absolute top-2 right-0">
                           <button 
                           type="button" 
                           onClick={(e) => { e.preventDefault(); contextRemoveItemToCart(product.id)}}
-                          className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
+                          className="-m-2 inline-flex p-2  border-0 text-gray-400 hover:text-gray-500">
                             <span className="sr-only">Remove</span>
                             <IoIosCloseCircleOutline className="h-6 w-6" aria-hidden="true" />
                           </button>
@@ -156,6 +152,9 @@ export function Cart() {
             <div className="mt-6">
               <button
                 type="submit"
+                onClick={(e) => { e.preventDefault(); navigate('/checkout', {
+                    replace: false,
+                })}}
                 className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Checkout

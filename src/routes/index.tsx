@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import { Cart } from "../pages/cart";
 import { ProductsByCategory } from "../pages/category/[slug]";
+import Checkout from "../pages/checkout";
 import { Home } from "../pages/home";
 import ProductById from "../pages/products/[id]";
 
@@ -32,6 +33,12 @@ function AppRoutes() {
                     path="/cart"
                     element={
                         <Cart />
+                    }
+                />
+                <Route
+                    path="/checkout"
+                    element={
+                        <Checkout />
                     }
                 />
             </Routes>
