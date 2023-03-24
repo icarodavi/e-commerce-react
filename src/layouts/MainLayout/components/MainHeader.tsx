@@ -1,24 +1,21 @@
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
-import { useNavigate  } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useContextSelector } from "use-context-selector";
 import { ShopContext } from "../../../context/ShopContext";
 
 
 export function MainHeader({
-    // currencies,
     navigation,
     setMobileMenuOpen
 }: {
-    // currencies: any,
     navigation: any,
     setMobileMenuOpen: any
 }) {
     const [showSearchInput, setShowSearchInput] = useState(false);
     const navigate = useNavigate();
-    const { cart } = useContextSelector(ShopContext, (context) => context);
+    const { cart, searchQuery, setSearchQuery } = useContextSelector(ShopContext, (context) => context);
     return (<>
         <header className="relative">
             <nav aria-label="Top">
@@ -63,18 +60,18 @@ export function MainHeader({
                                     <div className="flex h-full justify-center space-x-8">
                                         <div className="py-2">
                                             <Menu as="div" className="relative inline-block text-left">
-                                            <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                                                <Menu.Button as="div" className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                                     <button
-                                                    onClick={() => {
-                                                        navigate('/', { replace: true, })
-                                                        // toast.success('Sucesso!');
-                                                    }}
-                                                    className="bg-white">Home</button>
-                                                    </Menu.Button>
+                                                        onClick={() => {
+                                                            navigate('/', { replace: true, })
+                                                            // toast.success('Sucesso!');
+                                                        }}
+                                                        className="bg-white">Home</button>
+                                                </Menu.Button>
                                             </Menu>
                                             <Menu as="div" className="relative inline-block text-left">
-                                                <Menu.Button 
-                                                className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                                                <Menu.Button
+                                                    className="inline-flex h-full justify-center items-center rounded-md px-4 py-2 text-sm font-medium text-gray-800 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                                     Categories
                                                     <ChevronDownIcon
                                                         className="ml-2 -mr-1 h-5 w-5 text-gray-400 hover:text-gray-200"
@@ -92,7 +89,7 @@ export function MainHeader({
                                                 >
                                                     <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                                                         <div className="px-1 py-1 z-50">
-                                                                
+
                                                             {(navigation && navigation.length > 0) && navigation.map((page: any) => (
                                                                 <Menu.Item key={page.key} as={Fragment}>
                                                                     <a
@@ -148,8 +145,21 @@ export function MainHeader({
                                     leaveTo="opacity-0"
                                     as={Fragment}
                                 >
-                                    <input
-                                        className="border text-sm border-gray-200 rounded-md px-2" placeholder="Search" />
+                                    <form onSubmit={(e) => {
+                                        e.preventDefault();
+                                        navigate(`/search/${searchQuery}`, {
+                                            replace: true,
+                                            relative: "path",
+                                        });
+                                        navigate(0);
+                                    }}>
+                                        <input
+                                            className="border text-sm border-gray-200 rounded-md px-2"
+                                            placeholder="Search"
+                                            value={String(searchQuery)}
+                                            onChange={(e) => { setSearchQuery(e.target.value) }}
+                                        />
+                                    </form>
                                 </Transition>
                             </div>
 
@@ -174,8 +184,21 @@ export function MainHeader({
                                     leaveTo="opacity-0"
                                     as={Fragment}
                                 >
-                                    <input
-                                        className="border text-sm border-gray-200 rounded-md px-2 hidden lg:block" placeholder="Search" />
+                                    <form onSubmit={(e) => {
+                                        e.preventDefault();
+                                        navigate(`/search/${searchQuery}`, {
+                                            replace: true,
+                                            relative: "path",
+                                        });
+                                        navigate(0);
+                                    }}>
+                                        <input
+                                            className="border text-sm border-gray-200 rounded-md px-2 hidden lg:block"
+                                            placeholder="Search"
+                                            value={String(searchQuery)}
+                                            onChange={(e) => { setSearchQuery(e.target.value) }}
+                                        />
+                                    </form>
                                 </Transition>
                                 <a href="#" onClick={() => { setShowSearchInput(!showSearchInput) }}
                                     className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">

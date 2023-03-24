@@ -13,10 +13,12 @@ interface ShopContextType {
     categoriesStatus: any
     cart: itemCart[],
     contextAddItemToCart: (newItem: itemCart) => void,
-    contextRemoveItemToCart: (id: number) => void, 
+    contextRemoveItemToCart: (id: number) => void,
     contextClearCart: () => void,
     contextIncreaseItemToCart: (id: number) => void,
     contextDecreaseItemToCart: (id: number) => void,
+    searchQuery: null | string,
+    setSearchQuery: (query: string) => void,
 }
 
 export const ShopContext = createContext({} as ShopContextType);
@@ -24,38 +26,38 @@ export const ShopContext = createContext({} as ShopContextType);
 export function ShopProvider({ children }: { children: ReactNode }) {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState<null | string>('');
+    
     const queryCategories = useAllCategories();
     const { status: categoriesStatus, data: categoriesData } = queryCategories;
 
-const INITIAL_STATE = {
-    cart: [],
-}
+    const INITIAL_STATE = {
+        cart: [],
+    }
     const [shopState, dispatch] = useReducer(
-        shopReducer, 
-        INITIAL_STATE, 
+        shopReducer,
+        INITIAL_STATE,
         () => {
-        const storedStateAsJSON = localStorage.getItem(JSONStorage.key);
+            const storedStateAsJSON = localStorage.getItem(JSONStorage.key);
 
-        if (storedStateAsJSON) {
-            // return JSON.parse(storedStateAsJSON);
+            if (storedStateAsJSON) {
+                return JSON.parse(storedStateAsJSON);
+            }
+
             return {
-                ...JSON.parse(storedStateAsJSON)
+                cart: [],
             };
-        }
-        return {
-            cart: [],
-        };
-    },
+        },
     );
 
     useEffect(() => {
         const stateJSON = JSON.stringify(shopState);
 
         localStorage.setItem(JSONStorage.key, stateJSON);
-    },[shopState])
+    }, [shopState])
 
 
-    function contextRemoveItemToCart(id:number) {
+    function contextRemoveItemToCart(id: number) {
         dispatch(removeItemToCart(id));
     }
 
@@ -67,7 +69,7 @@ const INITIAL_STATE = {
         dispatch(clearCart());
     }
 
-    function contextIncreaseItemToCart(id:number) {
+    function contextIncreaseItemToCart(id: number) {
         dispatch(increaseItemToCart(id));
     }
 
@@ -76,22 +78,27 @@ const INITIAL_STATE = {
     }
 
     const { cart } = shopState;
+    
+    const store = {
+        cart,
+        searchQuery, 
+        setSearchQuery,
+        mobileFiltersOpen,
+        setMobileFiltersOpen,
+        mobileMenuOpen,
+        setMobileMenuOpen,
+        categoriesData,
+        categoriesStatus,
+        contextAddItemToCart,
+        contextRemoveItemToCart,
+        contextClearCart,
+        contextIncreaseItemToCart,
+        contextDecreaseItemToCart,
+    };
+
     return (
         <ShopContext.Provider
-            value={{
-                cart,
-                mobileFiltersOpen, 
-                setMobileFiltersOpen,
-                mobileMenuOpen, 
-                setMobileMenuOpen,
-                categoriesData,
-                categoriesStatus,
-                contextAddItemToCart,
-                contextRemoveItemToCart,
-                contextClearCart,
-                contextIncreaseItemToCart,
-                contextDecreaseItemToCart,
-            }}>
+            value={store}>
             {children}
         </ShopContext.Provider>
     )
