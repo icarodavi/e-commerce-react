@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
+import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, } from '@heroicons/react/20/solid'
 import { MainLayout } from '../../layouts/MainLayout'
 import { UIButton } from '../../components/UIButton'
 import { HiOutlineTrash } from "react-icons/hi";
@@ -7,7 +6,6 @@ import { IoIosAddCircleOutline, IoIosCloseCircleOutline, IoIosRemoveCircleOutlin
 import { useContextSelector } from 'use-context-selector';
 import { ShopContext } from '../../context/ShopContext';
 import { priceFormatter } from '../../utils/format';
-import { itemCart } from '../../reducers/shop/reducer';
 import { sumItem } from '../../utils/number';
 import { useNavigate } from 'react-router-dom';
 

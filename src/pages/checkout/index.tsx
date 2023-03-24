@@ -7,8 +7,6 @@ import { ShopContext } from "../../context/ShopContext"
 import { MainLayout } from "../../layouts/MainLayout";
 import { priceFormatter } from "../../utils/format";
 import { sumItem } from "../../utils/number";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-
 
 export function Checkout() {
     const { cart } = useContextSelector(ShopContext, context => context);

@@ -2,7 +2,7 @@
 import { ProductGrid } from '../../layouts/MainLayout/components/ProductGrid';
 import { MainLayout } from '../../layouts/MainLayout';
 import { useParams } from 'react-router-dom';
-import { useFindProducts, useProductsByCategory } from '../../hooks/useProducts';
+import { useFindProducts } from '../../hooks/useProducts';
 
 
 export function SearchProducts() {

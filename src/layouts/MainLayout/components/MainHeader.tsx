@@ -1,5 +1,5 @@
 import { Menu, Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, ChevronDownIcon, MagnifyingGlassIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContextSelector } from "use-context-selector";

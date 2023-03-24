@@ -8,7 +8,6 @@ import { MainFooter } from "./components/MainFooter";
 import { MainHeader } from "./components/MainHeader";
 import { MobileMenu } from "./components/MobileMenu";
 
-// const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 
 const filters = [
     {
@@ -58,7 +57,7 @@ const filters = [
         ],
     },
 ]
-// 
+
 const footerNavigation = {
     products: [
         { name: 'Bags', href: '#' },
