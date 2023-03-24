@@ -16,6 +16,12 @@ Next, run the development server:
 yarn dev
 ```
 
+To run tests:
+
+```bash
+yarn test
+```
+
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
 ## Customizing
