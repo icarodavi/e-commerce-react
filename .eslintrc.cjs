@@ -29,16 +29,29 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": [
             "off",
             {
-                allowExpressions: true
-            }
+                allowExpressions: true,
+            },
+        ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                devDependencies: [
+                    "test.{ts,tsx}", // repos with a single test file
+                    "test-*.{ts,tsx}", // repos with multiple top-level test files
+                    "**/*{.,_}{test,spec}.{ts,tsx}", // tests where the extension or filename suffix denotes that it is a test
+                    "**/jest.config.ts", // jest config
+                    "**/jest.setup.ts", // jest setup
+                ],
+                optionalDependencies: false,
+            },
         ],
         "import/extensions": [
             "error",
             "ignorePackages",
             {
                 ts: "never",
-                tsx: "never"
-            }
+                tsx: "never",
+            },
         ],
         "no-tabs": 0,
         "react/jsx-indent-props": ["error", 4],
@@ -48,12 +61,12 @@ module.exports = {
         "@typescript-eslint/indent": ["error"],
         "react/jsx-indent": ["error", 4],
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error"
+        "@typescript-eslint/no-unused-vars": "error",
     },
     settings: {
         "import/resolver": {
-            typescript: {}
-        }
+            typescript: {},
+        },
     },
     overrides: [
         {
