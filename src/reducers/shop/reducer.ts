@@ -23,9 +23,8 @@ interface ShopState {
 
 export function shopReducer(state: ShopState, action: any) {
     switch (action.type) {
-
         case ShopActionsType.ADD_ITEM_TO_CART: {
-            const foundId = state.cart.findIndex(item => item.id === action.payload.newItem.id)
+            const foundId = state.cart.findIndex((item) => item.id === action.payload.newItem.id);
             if (foundId === -1) {
                 return produce(state, (draft) => {
                     draft.cart.push(action.payload.newItem);
@@ -33,7 +32,7 @@ export function shopReducer(state: ShopState, action: any) {
             }
             return produce(state, (draft) => {
                 draft.cart[foundId].quantity += 1;
-            })
+            });
         }
 
         case ShopActionsType.CLEAR_CART: {
@@ -43,12 +42,10 @@ export function shopReducer(state: ShopState, action: any) {
         }
 
         case ShopActionsType.INCREASE_ITEM_TO_CART: {
-            const currentProductIndex = state.cart.findIndex((item) => {
-                return item.id === action.payload.id
-            });
+            const currentProductIndex = state.cart.findIndex((item) => item.id === action.payload.id);
 
             if (currentProductIndex < 0) {
-                return state
+                return state;
             }
             return produce(state, (draft) => {
                 draft.cart[currentProductIndex].quantity += 1;
@@ -56,12 +53,10 @@ export function shopReducer(state: ShopState, action: any) {
         }
 
         case ShopActionsType.DECREASE_ITEM_TO_CART: {
-            const currentProductIndex = state.cart.findIndex((item) => {
-                return item.id === action.payload.id
-            });
+            const currentProductIndex = state.cart.findIndex((item) => item.id === action.payload.id);
 
             if (currentProductIndex < 0) {
-                return state
+                return state;
             }
             return produce(state, (draft) => {
                 if (draft.cart[currentProductIndex].quantity > 0) {
@@ -71,18 +66,16 @@ export function shopReducer(state: ShopState, action: any) {
         }
 
         case ShopActionsType.REMOVE_ITEM_TO_CART: {
-            const currentProductIndex = state.cart.findIndex((item) => {
-                return item.id === action.payload.id
-            });
+            const currentProductIndex = state.cart.findIndex((item) => item.id === action.payload.id);
 
             if (currentProductIndex < 0) {
-                return state
+                return state;
             }
             return produce(state, (draft) => {
                 draft.cart.splice(currentProductIndex, 1);
             });
         }
         default:
-            return state
+            return state;
     }
 }
