@@ -7,13 +7,11 @@ export function useAllCategories() {
         queryKey: ["allCategories"],
         queryFn: async () => {
             const { data } = await api.get('products/categories');
-            const dataObj = data.map((item: any) => {
-                return {
-                    title: SlugToTitle(item),
-                    key: item,
-                }
-            })
+            const dataObj = data.map((item: any) => ({
+                title: SlugToTitle(item),
+                key: item,
+            }));
             return dataObj;
         }
-    })
+    });
 }

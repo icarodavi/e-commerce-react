@@ -21,13 +21,13 @@ interface ShopContextType {
     categoriesData?: any;
     categoriesStatus?: any;
     cart?: itemCart[];
-    contextAddItemToCart?: (newItem: itemCart) => void;
-    contextRemoveItemToCart?: (id: number) => void;
-    contextClearCart?: () => void;
-    contextIncreaseItemToCart?: (id: number) => void;
-    contextDecreaseItemToCart?: (id: number) => void;
+    contextAddItemToCart: (newItem: itemCart) => void;
+    contextRemoveItemToCart: (id: number) => void;
+    contextClearCart: () => void;
+    contextIncreaseItemToCart: (id: number) => void;
+    contextDecreaseItemToCart: (id: number) => void;
     searchQuery?: null | string;
-    setSearchQuery?: (query: string) => void;
+    setSearchQuery: (query: string) => void;
 }
 
 export const ShopContext = createContext({} as ShopContextType);

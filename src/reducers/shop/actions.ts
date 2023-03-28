@@ -10,7 +10,7 @@ export enum ShopActionsType {
 
 export const JSONStorage = {
     key: '@shop-teste@v.1.0'
-}
+};
 
 export function addItemToCart(newItem: itemCart) {
     return {
@@ -18,7 +18,7 @@ export function addItemToCart(newItem: itemCart) {
         payload: {
             newItem,
         }
-    }
+    };
 }
 
 export function removeItemToCart(id: number) {
@@ -27,7 +27,7 @@ export function removeItemToCart(id: number) {
         payload: {
             id
         }
-    }
+    };
 }
 
 export function increaseItemToCart(id: number) {
@@ -36,7 +36,7 @@ export function increaseItemToCart(id: number) {
         payload: {
             id
         }
-    }
+    };
 }
 
 export function decreaseItemToCart(id: number) {
@@ -45,11 +45,11 @@ export function decreaseItemToCart(id: number) {
         payload: {
             id
         }
-    }
+    };
 }
 
 export function clearCart() {
     return {
         type: ShopActionsType.CLEAR_CART,
-    }
+    };
 }

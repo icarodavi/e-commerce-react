@@ -1,15 +1,13 @@
-
-import { ProductGrid } from '../../layouts/MainLayout/components/ProductGrid';
-import { MainLayout } from '../../layouts/MainLayout';
-import { useParams } from 'react-router-dom';
-import { useFindProducts } from '../../hooks/useProducts';
-
+import { useParams } from "react-router-dom";
+import { ProductGrid } from "../../layouts/MainLayout/components/ProductGrid";
+import { MainLayout } from "../../layouts/MainLayout";
+import { useFindProducts } from "../../hooks/useProducts";
 
 export function SearchProducts() {
     const { query } = useParams();
     const { data, status } = useFindProducts(String(query));
 
-    return (<>
+    return (
         <MainLayout>
             {/* Product grid */}
             <div className="mt-2 mb-8">
@@ -18,7 +16,6 @@ export function SearchProducts() {
                     status={status}
                 />
             </div>
-
         </MainLayout>
-    </>);
+    );
 }

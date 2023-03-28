@@ -1,17 +1,14 @@
-
-import { ProductGrid } from '../../layouts/MainLayout/components/ProductGrid';
-import { FeaturedBanner } from '../../layouts/MainLayout/components/FeaturedBanner';
-import { useProducts } from '../../hooks/useProducts';
-import { MainLayout } from '../../layouts/MainLayout';
+import { ProductGrid } from "../../layouts/MainLayout/components/ProductGrid";
+import { FeaturedBanner } from "../../layouts/MainLayout/components/FeaturedBanner";
+import { useProducts } from "../../hooks/useProducts";
+import { MainLayout } from "../../layouts/MainLayout";
 
 export function Home() {
     const { data, status } = useProducts();
-    return (<>
+    return (
         <MainLayout>
             {/* Filters */}
-            <div className="pb-2">
-                
-            </div >
+            <div className="pb-2" />
 
             {/* Product grid */}
             <ProductGrid
@@ -23,5 +20,5 @@ export function Home() {
                 <FeaturedBanner />
             </div>
         </MainLayout>
-    </>);
+    );
 }

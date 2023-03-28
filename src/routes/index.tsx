@@ -1,6 +1,4 @@
-import {
-    BrowserRouter as Router, Route, Routes
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Cart } from "../pages/cart";
 import { ProductsByCategory } from "../pages/category/[slug]";
 import { Checkout } from "../pages/checkout";
@@ -10,54 +8,40 @@ import { ProductById } from "../pages/products/[id]";
 import { SearchProducts } from "../pages/search";
 
 function AppRoutes() {
-    return (<>
+    return (
         <Router>
             <Routes>
                 <Route
                     path="/"
-                    element={
-                        <Home />
-                    }
+                    element={<Home />}
                 />
                 <Route
                     path="/category/:slug"
-                    element={
-                        <ProductsByCategory />
-                    }
+                    element={<ProductsByCategory />}
                 />
                 <Route
                     path="/product/:id"
-                    element={
-                        <ProductById />
-                    }
+                    element={<ProductById />}
                 />
                 <Route
                     path="/cart"
-                    element={
-                        <Cart />
-                    }
+                    element={<Cart />}
                 />
                 <Route
                     path="/checkout"
-                    element={
-                        <Checkout />
-                    }
+                    element={<Checkout />}
                 />
                 <Route
                     path="/payed"
-                    element={
-                        <Payed />
-                    }
+                    element={<Payed />}
                 />
                 <Route
                     path="/search/:query"
-                    element={
-                        <SearchProducts />
-                    }
+                    element={<SearchProducts />}
                 />
             </Routes>
         </Router>
-    </>);
+    );
 }
 
-export { AppRoutes }
+export { AppRoutes };

@@ -8,7 +8,7 @@ export function useProducts() {
             const { data } = await api.get('products?limit=6');
             return data;
         }
-    })
+    });
 }
 
 export function useProductsByCategory(slug: string) {
@@ -18,7 +18,7 @@ export function useProductsByCategory(slug: string) {
             const { data } = await api.get(`products/category/${slug}?limit=6`);
             return data;
         }
-    })
+    });
 }
 
 export function useProductsById(id: string) {
@@ -28,7 +28,7 @@ export function useProductsById(id: string) {
             const { data } = await api.get(`products/${id}`);
             return data;
         }
-    })
+    });
 }
 
 export function useFindProducts(query: string) {
@@ -38,6 +38,5 @@ export function useFindProducts(query: string) {
             const { data } = await api.get(`products/search?q=${query}`);
             return data;
         }
-    })
+    });
 }
-

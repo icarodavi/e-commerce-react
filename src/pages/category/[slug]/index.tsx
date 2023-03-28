@@ -1,16 +1,14 @@
-
-import { ProductGrid } from '../../../layouts/MainLayout/components/ProductGrid';
-import { MainLayout } from '../../../layouts/MainLayout';
-import { useParams } from 'react-router-dom';
-import { useProductsByCategory } from '../../../hooks/useProducts';
-
+import { useParams } from "react-router-dom";
+import { ProductGrid } from "../../../layouts/MainLayout/components/ProductGrid";
+import { MainLayout } from "../../../layouts/MainLayout";
+import { useProductsByCategory } from "../../../hooks/useProducts";
 
 export function ProductsByCategory() {
     const { slug } = useParams();
 
     const { data, status } = useProductsByCategory(String(slug));
 
-    return (<>
+    return (
         <MainLayout>
             {/* Product grid */}
             <div className="mt-2 mb-8">
@@ -19,7 +17,6 @@ export function ProductsByCategory() {
                     status={status}
                 />
             </div>
-            
         </MainLayout>
-    </>);
+    );
 }

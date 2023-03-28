@@ -1,21 +1,26 @@
 import { Transition, Dialog } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, } from "react";
+import { Fragment } from "react";
 
 export function MobileMenu({
     navigation,
     mobileMenuOpen,
-    setMobileMenuOpen
+    setMobileMenuOpen,
 }: {
-    navigation: any,
-    mobileMenuOpen: any,
-    setMobileMenuOpen: any
+    navigation: any;
+    mobileMenuOpen: any;
+    setMobileMenuOpen: any;
 }) {
-
-
-    return (<>
-        <Transition.Root show={mobileMenuOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-40 lg:hidden" onClose={setMobileMenuOpen}>
+    return (
+        <Transition.Root
+            show={mobileMenuOpen}
+            as={Fragment}
+        >
+            <Dialog
+                as="div"
+                className="relative z-40 lg:hidden"
+                onClose={setMobileMenuOpen}
+            >
                 <Transition.Child
                     as={Fragment}
                     enter="transition-opacity ease-linear duration-300"
@@ -46,34 +51,58 @@ export function MobileMenu({
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     <span className="sr-only">Close menu</span>
-                                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                                    <XMarkIcon
+                                        className="h-6 w-6"
+                                        aria-hidden="true"
+                                    />
                                 </button>
                             </div>
 
                             <div className="space-y-6 py-6 px-4">
-                                    <div className="flow-root">
-                                        <h3 className="font-semibold antialiased text-gray-500">Categories</h3>
-                                    </div>
+                                <div className="flow-root">
+                                    <h3 className="font-semibold antialiased text-gray-500">
+                                        Categories
+                                    </h3>
+                                </div>
                             </div>
                             <div className="space-y-6 border-t border-gray-200 py-6 px-4">
-                                <a href="/" className="-m-2 block p-2 font-semibold text-gray-900">Home</a>
-                                {(navigation && navigation.length > 0) && navigation.map((page: any) => (
-                                    <div key={page.key} className="flow-root">
-                                        <a href={`/category/${page.key}`} className="-m-2 block p-2 font-medium text-gray-900">
-                                            {page.title}
-                                        </a>
-                                    </div>
-                                ))}
+                                <a
+                                    href="/"
+                                    className="-m-2 block p-2 font-semibold text-gray-900"
+                                >
+                                    Home
+                                </a>
+                                {navigation
+                                    && navigation.length > 0
+                                    && navigation.map((page: any) => (
+                                        <div
+                                            key={page.key}
+                                            className="flow-root"
+                                        >
+                                            <a
+                                                href={`/category/${page.key}`}
+                                                className="-m-2 block p-2 font-medium text-gray-900"
+                                            >
+                                                {page.title}
+                                            </a>
+                                        </div>
+                                    ))}
                             </div>
 
                             <div className="space-y-6 border-t border-gray-200 py-6 px-4">
                                 <div className="flow-root">
-                                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                                    <a
+                                        href="#1"
+                                        className="-m-2 block p-2 font-medium text-gray-900"
+                                    >
                                         Create an account
                                     </a>
                                 </div>
                                 <div className="flow-root">
-                                    <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
+                                    <a
+                                        href="#1"
+                                        className="-m-2 block p-2 font-medium text-gray-900"
+                                    >
                                         Sign in
                                     </a>
                                 </div>
@@ -81,13 +110,12 @@ export function MobileMenu({
 
                             <div className="space-y-6  py-6 px-4">
                                 {/* Currency selector */}
-                                <form>
-                                </form>
+                                <form />
                             </div>
                         </Dialog.Panel>
                     </Transition.Child>
                 </div>
             </Dialog>
         </Transition.Root>
-    </>);
+    );
 }
